@@ -2,6 +2,7 @@ package io.github.talelin.latticy.mapper.my;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.talelin.latticy.model.my.Banner;
+import io.github.talelin.latticy.model.my.BannerDo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * 内部的泛型表示“将从数据库中查询出来的数据，映射到相应的实体类”
  */
 @Repository
-public interface BannerMapper extends BaseMapper<Banner> {
+public interface IBannerMapper extends BaseMapper<BannerDo> {
     /**
      * 获取所有Banner
      * @return

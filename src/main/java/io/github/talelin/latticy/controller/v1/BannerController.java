@@ -7,11 +7,10 @@ import io.github.talelin.latticy.common.util.LocalParams;
 import io.github.talelin.latticy.common.util.PageUtil;
 import io.github.talelin.latticy.dto.my.BannerDTO;
 import io.github.talelin.latticy.model.my.Banner;
+import io.github.talelin.latticy.model.my.BannerDo;
+import io.github.talelin.latticy.service.BannerService;
 import io.github.talelin.latticy.service.imy.IBannerService;
-import io.github.talelin.latticy.vo.CreatedVO;
-import io.github.talelin.latticy.vo.DeletedVO;
-import io.github.talelin.latticy.vo.PageResponseVO;
-import io.github.talelin.latticy.vo.UpdatedVO;
+import io.github.talelin.latticy.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -31,6 +30,10 @@ public class BannerController {
     @Autowired
     private IBannerService bannerService;
 
+    @Autowired
+    private BannerService bannerServiceImpl;
+
+
     /**
      * 获取所有banner数据
      * @param pageSize 页码
@@ -46,8 +49,28 @@ public class BannerController {
         Page page = new Page(pageSize-1,count);
         IPage<Banner> bannerPage = bannerService.searchAllBanner(page);
         PageResponseVO<Banner> bannerPageResponseVO = PageUtil.build(bannerPage);
+
+
+        //BannerService.getBaseMapper().selectPage(page,null);
+
         return bannerPageResponseVO;
     }
+
+    @GetMapping("/page")
+    public IPageResponseVO getBanners(@RequestParam(name = "page", required = false, defaultValue = "0") @Min(value = 1) Integer page,
+                           @RequestParam(name = "count", required = false, defaultValue = "20") @Max(value = 50) @Min(value = 1) Integer count){
+        Page<BannerDo> pager = new Page<>(page,count);
+        IPage<BannerDo> paging = bannerServiceImpl.getBaseMapper().selectPage(pager,null);
+        return new IPageResponseVO<>(
+                paging.getTotal(),
+                paging.getRecords(),
+                paging.getCurrent(),
+                paging.getSize()
+         );
+    }
+
+
+
 
     /**
      * 根据 id 修改 Banner 数据
