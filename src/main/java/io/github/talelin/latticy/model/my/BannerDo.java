@@ -46,5 +46,6 @@ public class BannerDo  {
     private Date createTime;
 
     @JsonIgnore
+    @TableLogic
     private Date deleteTime;
 }

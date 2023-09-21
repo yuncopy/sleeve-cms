@@ -99,7 +99,8 @@ public class BannerServiceImpl implements IBannerService {
             throw new NotFoundException(20000);
         }
         QueryWrapper<BannerItem> wrapper = new QueryWrapper<>();
-        wrapper.eq("banner_id",bannerId).isNull("delete_time");
+        //wrapper.eq("banner_id",bannerId).isNull("delete_time"); //硬编码
+        wrapper.lambda().eq(BannerItem::getBannerId,bannerId).isNull(BannerItem::getDeleteTime);
         List<BannerItem> bannerItemList =  bannerItemMapper.selectList(wrapper);
         return new BannerItemsBO(banner,bannerItemList);
     }
