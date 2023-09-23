@@ -79,6 +79,13 @@ public class SpuServiceImpl implements ISpuService {
         return spuDetailBO;
     }
 
+
+    @Override
+    public SpuDetail getDetailBySpuId(Long spuId){
+        SpuDetail spuDetail = spuMapper.getDetailBySpuId(spuId);
+        return spuDetail;
+    }
+
     /**
      * @Description: 查询当前SPU所属分类,从根分类，一直到直属分类
      * @param categoryId 分类id

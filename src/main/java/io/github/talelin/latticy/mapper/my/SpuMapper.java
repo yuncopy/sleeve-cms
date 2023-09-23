@@ -2,6 +2,7 @@ package io.github.talelin.latticy.mapper.my;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.github.talelin.latticy.model.my.Sku;
 import io.github.talelin.latticy.model.my.SpuDetail;
 import io.github.talelin.latticy.model.my.SpuOutline;
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +26,15 @@ public interface SpuMapper extends BaseMapper<Spu> {
      * @return
      */
     SpuDetail searchSpuDetailById(@Param("spuId") Long spuId);
+
+
+    /**
+     * 根据spuId 查询所属sku
+     * @param spuId
+     * @return List<Sku>
+     */
+    SpuDetail getDetailBySpuId(@Param("spuId") Long spuId);
+
 
     /**
      * 查询当前SPU所属分类,从根分类，一直到直属分类

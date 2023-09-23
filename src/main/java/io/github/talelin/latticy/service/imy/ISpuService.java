@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.talelin.latticy.bo.my.SpuDetailBO;
 import io.github.talelin.latticy.dto.my.SpuSaveDTO;
 import io.github.talelin.latticy.dto.my.SpuUpdateDTO;
+import io.github.talelin.latticy.model.my.SpuDetail;
 import io.github.talelin.latticy.model.my.SpuOutline;
 import io.github.talelin.latticy.model.my.SpuSpec;
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +26,11 @@ public interface ISpuService {
      * @return
      */
     SpuDetailBO searchSpuDetailById(Long spuId);
+
+
+    SpuDetail getDetailBySpuId(Long spuId);
+
+
     /**
      * 根据spuId 查询当前spu所拥有的商品规格
      * @param spuId

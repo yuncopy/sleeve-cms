@@ -70,6 +70,16 @@
         where spu.id = #{spuId}
     </select>
 
+
+    <select id="getDetailBySpuId" resultType="io.github.talelin.latticy.model.my.SpuDetail">
+         select spu.*,
+                sku.title as default_sku
+        from spu
+        left join sku on spu.default_sku_id = sku.id
+        where spu.id = #{spuId}
+    </select>
+
+
     <!--查询当前SPU所属分类,从根分类，一直到直属分类-->
     <select id="searchCurrSpuBelongCategory" resultType="java.util.HashMap">
         select

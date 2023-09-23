@@ -7,6 +7,7 @@ import io.github.talelin.latticy.common.util.LocalParams;
 import io.github.talelin.latticy.common.util.PageUtil;
 import io.github.talelin.latticy.dto.my.SpuSaveDTO;
 import io.github.talelin.latticy.dto.my.SpuUpdateDTO;
+import io.github.talelin.latticy.model.my.SpuDetail;
 import io.github.talelin.latticy.model.my.SpuOutline;
 import io.github.talelin.latticy.model.my.SpuSpec;
 import io.github.talelin.latticy.service.imy.ISpuService;
@@ -60,6 +61,13 @@ public class SpuController {
         SpuDetailBO spuDetailBO = spuService.searchSpuDetailById(id);
         return spuDetailBO;
     }
+
+    @GetMapping("/{id}/detail")
+    public SpuDetail getDetail(@PathVariable("id") @Positive Long id) {
+        SpuDetail spuDetail = spuService.getDetailBySpuId(id);
+        return spuDetail;
+    }
+
 
     /**
      * @Description: 获取当前 spu 所拥有的 sku 列表
