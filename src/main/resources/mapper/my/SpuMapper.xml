@@ -25,7 +25,7 @@
         <result column="delete_time" property="deleteTime"/>
     </resultMap>
 
-    <!--spu概要映射结果集-->
+    <!--spu概要映射结果集 autoMapping=true <id column="id" property="id"/>-->
     <resultMap id="SpuOutlineResultMap" type="io.github.talelin.latticy.model.my.SpuOutline" extends="BaseResultMap">
         <result column="name" jdbcType="VARCHAR" property="categoryName"></result>
     </resultMap>
